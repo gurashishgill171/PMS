@@ -1,0 +1,16 @@
+server:
+  port: 4004
+
+
+# REST client -> http://localhost:4004/api/patients
+# API Gateway -> http://patient-service:4000/patients
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: patient-service-route
+          uri: http://patient-service:4000
+          predicates:
+            - Path=/api/patients/**
+          filters:
+            - StripPrefix=1
