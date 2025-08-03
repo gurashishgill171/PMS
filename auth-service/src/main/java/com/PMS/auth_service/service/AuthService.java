@@ -28,4 +28,13 @@ public class AuthService {
 
         return token;
     }
+
+    public boolean validate(String token) {
+        try {
+            jwtUtil.validateToken(token);
+            return true;
+        }catch (Exception e) {
+            return false;
+        }
+    }
 }
